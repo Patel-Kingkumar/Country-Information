@@ -1,0 +1,33 @@
+<div class="country" *ngFor="let item of country">
+  <div class="details mt-5">
+      <div class="country-card mt-3">
+          <button class="btn btn-outline-primary back" (click)="goBack()">Go Back</button>
+          <img src="{{ item.flags.svg }}" alt="" class="country-img mt-5">
+      </div>
+      <div class="about mt-3">
+          <div class="country-name"><span><b>Name : </b></span>{{ item.name.common }}</div>
+          <div class="country-alt-name"><span><b>Alternative Name : </b></span>{{ item.altSpellings }}</div>
+          <div class="country-capital"><span><b>Capital : </b></span>{{ item.capital }}</div>
+          <div><b>Languages : </b></div>
+          <div class="country-languages" *ngFor="let lang of item.languages | keyvalue">
+              {{ lang.value }}
+          </div>
+          <div class="country-currencies" *ngFor="let cur of currencies">
+              <span><b>Currencies : </b>{{ cur.name }}</span>
+              <span><b>Symbol : </b>{{ cur.symbol }}</span>
+          </div>
+          <div class="country-population"><span><b>Population : </b></span>{{ item.population }}</div>
+          <div class="country-continents"><span><b>Continents : </b></span>{{ item.continents }}</div>
+          <div class="country-calling-code"><span><b>Calling Code : </b></span>{{ item.idd.root }}{{ item.idd.suffixes }}</div>
+          <div class="country-borders mb-3">
+              <div class="lab">
+                  <b>Share Borders :</b>
+              </div>
+              <div class="btn btn-primary txt m-1" *ngFor="let bod of item.borders" (click)="borders(bod)">
+                  <div>{{ bod }}</div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+<router-outlet></router-outlet>

@@ -1,0 +1,39 @@
+<div class="info">
+  <div><b>Developer Name : </b>Patel King Rajeshbhai</div>
+  <div><b>Education : </b>Master of Computer Application</div>
+  <div><b>Profession : </b>Web Developer</div>
+</div>
+<div class="about">
+  <div><b>Project Name : </b>Country Information</div>
+  <div><b>Used Technology : </b>Angular</div>
+  <div><b>Origin Country : </b>India (Bharat)</div>
+</div>
+<div class="filter">
+  <div class="continents">
+    <select class="form-control" name="continents" id="continents" (change)="onChange($event.target)">
+      <option selected disabled value="default">Sort by Continent</option>
+      <option value="allcountries">All Country</option>
+      <option *ngFor="let cont of countryContinents" value="{{ cont }}">{{ cont }}</option>
+    </select>
+  </div>
+  <div class="population">
+    <button class="btn btn-outline-primary" (click)="sort()">Sort by Population <b>{{ sortInfo ? 'Asecending &#8679;' : 'Decending &#8681;' }}</b></button>&nbsp;&nbsp;&nbsp;
+  </div>
+  <div class="search">
+    <input type="text" class="form-control search-country" placeholder="Search by Country Name" [(ngModel)]="searchText" (keyup)="onSearchCountry($event)" />
+  </div>
+</div>
+<div class="main">
+  <div class="country-card" *ngFor="let item of filterCountry">
+    <div class="country-info">
+      <img src="{{ item.flags.svg }}" alt="" class="country-img">
+      <div class="country-details">
+        <div class="country-name"><span><b>Name : </b></span>{{ item.name.common }}</div>
+        <div class="country-capital"><span><b>Capital : </b></span>{{ item.capital }}</div>
+        <div class="country-population"><span><b>Population : </b></span>{{ item.population / 1000000 }} M</div>
+        <div class="country-continents"><span><b>Continents : </b></span>{{ item.continents }}</div>
+        <button class="btn btn-outline-success more-link" (click)="details(item.cca3)">More Details</button>
+      </div>
+    </div>
+  </div>
+</div>
